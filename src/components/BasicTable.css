@@ -1,0 +1,43 @@
+input:invalid + span::after {
+  position: absolute;
+  content: "❌";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  position: absolute;
+  content: "✔️";
+  padding-left: 5px;
+}
+
+table {
+  background-color: darkolivegreen;
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+}
+
+thead th,
+tfoot th {
+  font-family: "Rock Salt", cursive;
+}
+
+th {
+  letter-spacing: 2px;
+}
+
+td {
+  letter-spacing: 1px;
+}
+
+tbody td {
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: gray;
+}
+tbody tr:nth-child(odd) {
+  background: bisque;
+}
+tfoot th {
+  text-align: right;
+}
