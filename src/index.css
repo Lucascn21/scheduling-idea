@@ -1,0 +1,9 @@
+body {
+  min-height: 100dvh;
+  background: red;
+}
+
+main {
+  display: grid;
+  min-height: 100dvh;
+}

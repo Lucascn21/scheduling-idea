@@ -46,8 +46,8 @@ export const BasicTable = () => {
                         onInput={(e) => {
                           console.dir(e);
                         }}
+                        required
                       />
-                      <span class=""></span>
                       <input
                         id={`PatrolEnd-B${binomial + 1}-S${sector + 1}`}
                         data-binomial={binomial + 1}
@@ -61,8 +61,8 @@ export const BasicTable = () => {
                           console.dir(e);
                           console.dir(e.key === "Enter");
                         }}
+                        required
                       />
-                      <span class=""></span>
                     </td>
                   );
                 })}

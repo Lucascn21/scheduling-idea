@@ -1,31 +1,31 @@
-input:invalid + span::after {
-  position: absolute;
-  content: "❌";
-  padding-left: 5px;
+input:invalid {
+  border: 2px solid red;
 }
 
-input:valid + span::after {
-  position: absolute;
-  content: "✔️";
-  padding-left: 5px;
+input:valid {
+  border: 2px solid green;
 }
 
 table {
   background-color: darkolivegreen;
   font-family: "helvetica neue", helvetica, arial, sans-serif;
+  table-layout: fixed;
+}
+
+input,
+select {
+  height: 100%;
+  width: 95%;
+  min-height: 4rem;
+}
+
+td {
+  padding: 5px;
 }
 
 thead th,
 tfoot th {
   font-family: "Rock Salt", cursive;
-}
-
-th {
-  letter-spacing: 2px;
-}
-
-td {
-  letter-spacing: 1px;
 }
 
 tbody td {
