@@ -2,14 +2,37 @@ import React from "react";
 import "./BasicTable.css";
 let sectors = [...Array(7).keys()];
 let binomials = [...Array(7).keys()];
-
+let maxTimeForGroup = 6;
 console.dir(sectors);
 console.dir(binomials);
 export const BasicTable = () => {
+  function hhmmToDecimal(hourHHMM) {
+    let timeArray = hourHHMM.split(":");
+    return parseFloat(
+      parseInt(timeArray[0], 10) + parseInt(timeArray[1], 10) / 60
+    );
+  }
+  function decimalToHHMM(decimalHour) {
+    let hrs = parseInt(Number(decimalHour));
+    let min = Math.round((Number(decimalHour) - hrs) * 60);
+    return `${hrs}:${min < 10 ? min.toString().padStart(2, "0") : min}`;
+  }
   const handleChange = (e) => {
     //console.dir(e.target);
-    console.dir(e.target.value);
-    console.dir(e.target.parentElement.dataset);
+    //console.dir(e.target.parentElement);
+    //console.dir(e.target);
+    // console.dir(e.target.parentElement.children[0].value);
+    // console.dir(e.target.parentElement.children[1].value);
+    //console.dir(hhmmToDecimal(e.target.parentElement.children[0].value));
+    //console.dir(hhmmToDecimal(e.target.parentElement.children[1].value));
+    console.dir(
+      decimalToHHMM(hhmmToDecimal(e.target.parentElement.children[0].value))
+    );
+    console.dir(
+      decimalToHHMM(hhmmToDecimal(e.target.parentElement.children[1].value))
+    );
+    //console.dir(`${e.target.value} ${e.target.dataset.meridiem}`);
+    //console.dir(e.target.dataset);
   };
   return (
     <>
@@ -34,6 +57,7 @@ export const BasicTable = () => {
                         id={`PatrolStart-B${binomial + 1}-S${sector + 1}`}
                         data-binomial={binomial + 1}
                         data-sector={sector + 1}
+                        data-meridiem={"AM"}
                         type="time"
                         onChange={handleChange}
                         min="00:00"
@@ -52,6 +76,7 @@ export const BasicTable = () => {
                         id={`PatrolEnd-B${binomial + 1}-S${sector + 1}`}
                         data-binomial={binomial + 1}
                         data-sector={sector + 1}
+                        data-meridiem={"PM"}
                         type="time"
                         onChange={handleChange}
                         min="12:00"
