@@ -2,12 +2,17 @@ import React from "react";
 import "./BasicTable.css";
 let sectors = [...Array(7).keys()];
 let binomials = [...Array(7).keys()];
-let maxTimeForGroup = 6;
+let maxTimeForGroup = "6:00";
 console.dir(sectors);
 console.dir(binomials);
 export const BasicTable = () => {
-  function hhmmToDecimal(hourHHMM) {
+  function hhmmToDecimal(hourHHMM = "00:00") {
+    console.dir(hourHHMM);
+
+    //console.dir(typeof hourHHMM);
     let timeArray = hourHHMM.split(":");
+    // console.dir(timeArray.length === 2);
+    if (timeArray[0] == "00") timeArray[0] = "12";
     return parseFloat(
       parseInt(timeArray[0], 10) + parseInt(timeArray[1], 10) / 60
     );
@@ -15,22 +20,46 @@ export const BasicTable = () => {
   function decimalToHHMM(decimalHour) {
     let hrs = parseInt(Number(decimalHour));
     let min = Math.round((Number(decimalHour) - hrs) * 60);
-    return `${hrs}:${min < 10 ? min.toString().padStart(2, "0") : min}`;
+    console.dir(min);
+    //console.dir(min.toString().length);
+    return `${hrs}:${
+      min.toString().length < 2 ? min.toString().padStart(2, "0") : min
+    }`;
   }
   const handleChange = (e) => {
     //console.dir(e.target);
     //console.dir(e.target.parentElement);
     //console.dir(e.target);
-    // console.dir(e.target.parentElement.children[0].value);
-    // console.dir(e.target.parentElement.children[1].value);
+    let amTime = undefined,
+      pmTime = undefined;
+    if (e.target.parentElement.children[0].value) {
+      console.dir("am time changed");
+      amTime = 13 - hhmmToDecimal(e.target.parentElement.children[0].value);
+    }
+    if (e.target.parentElement.children[1].value) {
+      console.dir("pm time changed");
+      pmTime = hhmmToDecimal(e.target.parentElement.children[1].value) ;
+    }
+    let potentialPatrolTime = amTime + pmTime;
+    console.dir(
+      `amTime: ${amTime} || pmTime: ${pmTime} || maxTimeForGroup: ${maxTimeForGroup} || || ${decimalToHHMM(
+        potentialPatrolTime
+      )} || ${hhmmToDecimal(maxTimeForGroup)}`
+    );
+
     //console.dir(hhmmToDecimal(e.target.parentElement.children[0].value));
     //console.dir(hhmmToDecimal(e.target.parentElement.children[1].value));
-    console.dir(
-      decimalToHHMM(hhmmToDecimal(e.target.parentElement.children[0].value))
+    /*
+    let amTime = decimalToHHMM(
+      hhmmToDecimal(e.target.parentElement.children[0].value)
     );
-    console.dir(
-      decimalToHHMM(hhmmToDecimal(e.target.parentElement.children[1].value))
+
+    let pmTime = decimalToHHMM(
+      hhmmToDecimal(e.target.parentElement.children[1].value)
     );
+    */
+    //console.dir(amTime);
+    //console.dir(pmTime);
     //console.dir(`${e.target.value} ${e.target.dataset.meridiem}`);
     //console.dir(e.target.dataset);
   };
