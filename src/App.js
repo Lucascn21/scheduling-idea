@@ -14,18 +14,10 @@ function App() {
     );
   }
   //setBinomials(tempArray);
-  /*
-  return (
-    <>
-      <BasicTable shiftTime={"06:00"} groupQuantity={6} binomials={binomials} />
-    </>
-  );
-  */
 
   return (
     <>
-      <img src={"./Heroe_1_PNG_Lucas_Test.png"}></img>
-      <img src={"./Heroe_Vectorizado.png"}></img>
+      <BasicTable shiftTime={"06:00"} groupQuantity={6} binomials={binomials} />
     </>
   );
 }
