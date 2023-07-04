@@ -1,9 +1,0 @@
-body {
-  min-height: 100dvh;
-  background: rgb(192, 192, 192);
-}
-
-main {
-  display: grid;
-  min-height: 100dvh;
-}

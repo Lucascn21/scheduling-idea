@@ -1,0 +1,14 @@
+body {
+  min-height: 100dvh;
+  background: rgb(192, 192, 192);
+}
+
+main {
+  display: grid;
+
+  grid-template-columns: 70% auto;
+}
+
+aside {
+  text-align: center;
+}

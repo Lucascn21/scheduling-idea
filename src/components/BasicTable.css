@@ -12,8 +12,8 @@ table {
   table-layout: fixed;
 }
 
-input,
-select {
+td > input,
+td > select {
   height: 100%;
   width: 95%;
   min-height: 4rem;
