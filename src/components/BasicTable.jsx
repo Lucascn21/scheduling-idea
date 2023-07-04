@@ -1,8 +1,7 @@
-import React from "react";
 import "./BasicTable.css";
-import { Binomial } from "../models/binomial";
+
 //Use a folder or structure this better
-function hhmmToDecimal(hourHHMM = "00:00") {
+const hhmmToDecimal = (hourHHMM = "00:00") => {
   //console.dir(hourHHMM);
 
   //console.dir(typeof hourHHMM);
@@ -12,8 +11,9 @@ function hhmmToDecimal(hourHHMM = "00:00") {
   return parseFloat(
     parseInt(timeArray[0], 10) + parseInt(timeArray[1], 10) / 60
   );
-}
-function decimalToHHMM(decimalHour) {
+};
+
+const decimalToHHMM = (decimalHour) => {
   let hrs = parseInt(Number(decimalHour));
   let min = Math.round((Number(decimalHour) - hrs) * 60);
   //console.dir(min);
@@ -21,20 +21,9 @@ function decimalToHHMM(decimalHour) {
   return `${hrs}:${
     min.toString().length < 2 ? min.toString().padStart(2, "0") : min
   }`;
-}
+};
 
-//Still deciding how to handle constants and models
-let sectors = [...Array(7).keys()];
-let maxTimeForGroup = "06:00";
-let binomials = [];
-for (let index = 0; index < 7; index++) {
-  binomials.push(
-    //Will probably handle strings so hhmmtodecimal stays for now
-    new Binomial(index, ["asd"], [], hhmmToDecimal(maxTimeForGroup))
-  );
-}
-
-export const BasicTable = () => {
+export const BasicTable = ({ shiftTime, groupQuantity, binomials }) => {
   const handleChange = (e) => {
     let amTime = undefined,
       pmTime = undefined;
@@ -44,6 +33,7 @@ export const BasicTable = () => {
 
     if (amInput.value && pmInput.value) {
       let { binomial, sector } = e.target.dataset;
+      console.dir(binomials[binomial]);
       //12 to 24 hours format shenanigans
       amTime = 13 - hhmmToDecimal(amInput.value);
       pmTime = hhmmToDecimal(pmInput.value) - 13;
@@ -64,6 +54,7 @@ export const BasicTable = () => {
       } else {
         amInput.setCustomValidity("");
         pmInput.setCustomValidity("");
+
         //alert(`binomial ok. Remaining ${binomialTest.getUnallottedHours()}`);
       }
 
@@ -80,17 +71,11 @@ export const BasicTable = () => {
           !binomialRow.value && binomialRow.removeAttribute("disabled");
         }
       }
-      console.dir(
-        `amTime: ${amTime} || pmTime: ${pmTime} || maxTimeForGroup: ${maxTimeForGroup} ||getUnallottedHours ${binomials[
-          binomial
-        ].getUnallottedHours()} || getTotalHoursInPatrol ${binomials[
-          binomial
-        ].getTotalHoursInPatrol()} || Remaining ${binomials[
-          binomial
-        ].getUnallottedHours()}`
-      );
     }
   };
+
+  //Still deciding how to handle constants and models
+  let sectors = [...Array(7).keys()];
 
   return (
     <>
