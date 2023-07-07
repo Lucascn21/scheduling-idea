@@ -33,6 +33,7 @@ export const BasicTable = ({ shiftTime, groupQuantity, binomials }) => {
 
     if (amInput.value && pmInput.value) {
       let { binomial, sector } = e.target.dataset;
+      console.dir(binomials[binomial]);
       //12 to 24 hours format shenanigans
       amTime = 13 - hhmmToDecimal(amInput.value);
       pmTime = hhmmToDecimal(pmInput.value) - 13;
