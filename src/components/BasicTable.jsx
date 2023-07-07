@@ -33,7 +33,6 @@ export const BasicTable = ({ shiftTime, groupQuantity, binomials }) => {
 
     if (amInput.value && pmInput.value) {
       let { binomial, sector } = e.target.dataset;
-      console.dir(binomials[binomial]);
       //12 to 24 hours format shenanigans
       amTime = 13 - hhmmToDecimal(amInput.value);
       pmTime = hhmmToDecimal(pmInput.value) - 13;
@@ -57,7 +56,6 @@ export const BasicTable = ({ shiftTime, groupQuantity, binomials }) => {
 
         //alert(`binomial ok. Remaining ${binomialTest.getUnallottedHours()}`);
       }
-
       //Make a function that handles this so its cleaner
       const elements = document.querySelectorAll(
         `[data-binomial="${binomials[binomial].binomialDataId}"]`
